@@ -1,5 +1,5 @@
-# PlantedChallenge
-Planted Challenge
+# Planted Challenge
+Challenge made for https://en.eatplanted.com/
 
 ## Description
 
