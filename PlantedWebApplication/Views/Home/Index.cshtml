@@ -1,0 +1,37 @@
+﻿@using Newtonsoft.Json
+@model  PlantedWebApplication.ViewModels.AlbumViewModel
+
+
+@Scripts.Render("~/bundles/bootstrap")
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqplot")
+@Styles.Render("~/bundles/css")
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<script>
+ let jsonVariableWithPrices = @(Html.Raw(JsonConvert.SerializeObject(Model.Prices)));
+ 
+ $(document).ready(function(){
+        LoadPriceData();
+     });
+</script>
+
+@using (Html.BeginForm("Index", "Home", FormMethod.Post))
+{
+    <body>
+    <h1>Price fluctuation for album: @Model.AlbumName</h1>
+    <br/><br/>
+    @Html.LabelFor(model => model.AlbumName, new { @class = "control-label col-md-2" })
+    @Html.DropDownList("DiscogsId", new SelectList(Model.Albums, "DiscogsId", "AlbumName"), "--Choose Album--", new
+    {
+        title = "Pick Album",
+        onchange = "submit();"
+    });
+    <br/><br/>
+
+    <div id="discogsChart"> </div>
+    </body>
+}
